@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
-const http = require('http');
+const http = require('http'); //Websocket은 http를 통해 사용해야 함
 const socketIO = require('socket.io');
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(app); //express가 http를 통해 실행되도록
 const io = socketIO(server);
 const PORT = process.env.PORT || 5000;
 
@@ -14,8 +14,7 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 io.on('connection', (socket) => {
   socket.on('chatting', (data) => {
-    console.log(data);
-    io.emit('chatting', `Nice to meet you ${data}`);
+    io.emit('chatting', data);
   });
 });
 
