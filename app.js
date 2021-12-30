@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http'); //Websocket은 http를 통해 사용해야 함
 const socketIO = require('socket.io');
+const moment = require('moment');
 
 const app = express();
 const server = http.createServer(app); //express가 http를 통해 실행되도록
@@ -14,7 +15,12 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 io.on('connection', (socket) => {
   socket.on('chatting', (data) => {
-    io.emit('chatting', data);
+    const { name, msg } = data;
+    io.emit('chatting', {
+      name,
+      msg,
+      time: moment(new Date()).format('h:mm A'),
+    });
   });
 });
 
