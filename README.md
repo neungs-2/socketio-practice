@@ -27,3 +27,12 @@
 
 - `connection` : Client 와 연결되었을 때 발생
 - `disconnection` : Client 와 연결해제되었을 때 발생
+
+<br>
+
+### **Ngrok**
+
+- Local에 외부 PC에서 접근 시 이용
+- 설치: `npm install -g ngrok`
+- 실행: `ngrok http <port number>`
+- 사용: Forwarding 된 주소로 외부에서 접근 가능
